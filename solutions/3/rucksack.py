@@ -23,14 +23,15 @@ def priority(item: str) -> int:
 def priorities(items: list[str]) -> int:
     return reduce(lambda x, y: x + y, map(priority, items))
 
+
 def part1(data: List[Tuple[str, str]]):
     duplicates = [[c for c in x if c in y] for (x, y) in data]
     duplicates = [c[0] for c in duplicates]
     return priorities(duplicates)
 
 
-def part2(data: List[Tuple[str, str]], group_size = 3):
-    if (len(data) % group_size != 0):
+def part2(data: List[Tuple[str, str]], group_size=3):
+    if len(data) % group_size != 0:
         raise ValueError("Cannot divide data into groups")
 
     group_badges: List[List[str]] = []
@@ -39,10 +40,8 @@ def part2(data: List[Tuple[str, str]], group_size = 3):
             group_badges.append(items)
         else:
             group_badges[-1] = [item for item in items if item in group_badges[-1]]
-    
+
     return priorities([badge[0] for badge in group_badges])
-
-
 
 
 data = get_data(filename)
