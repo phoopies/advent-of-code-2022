@@ -41,7 +41,6 @@ def part1(crates: List[List[str]], instructions: List[Instruction]) -> str:
 
 def part2(crates: List[List[str]], instructions: List[Instruction]):
     movable_crates = [crate.copy() for crate in crates]
-    print(movable_crates)
     for instruction in instructions:
         movable_crates[instruction.to - 1] = movable_crates[instruction.to - 1] + (
             movable_crates[instruction.initial - 1][-instruction.amount:]
@@ -49,7 +48,6 @@ def part2(crates: List[List[str]], instructions: List[Instruction]):
         movable_crates[instruction.initial - 1] = movable_crates[
             instruction.initial - 1
         ][:-instruction.amount]
-        print(movable_crates)
     return "".join([stack[-1] for stack in movable_crates])
 
 
