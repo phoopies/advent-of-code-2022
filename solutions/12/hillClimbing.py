@@ -36,7 +36,6 @@ def get_data(filename: str) -> List[List[Point]]:
 def part1(points: List[List[Point]] = None) -> int:
     points = points or get_data(filename)
     flat_points = [p for row in points for p in row]
-    get_sum = lambda ps: sum([point.min_steps for point in ps])
     points_to_check = flat_points.copy()
     while points_to_check:
         changed_points = []
@@ -62,6 +61,7 @@ def part2() -> int:
             for point in row:
                 if point.type == PointType.START:
                     point.type == PointType.REGULAR
+                    break
         occ = 0
         for row in points:
             for point in row:
